@@ -1,0 +1,12 @@
+[Unit]
+Description=SampleApp
+After=docker.service
+Requires=docker.service
+
+[Service]
+TimeoutStartSec=0
+ExecStartPre=-/usr/bin/docker kill sample-app
+ExecStartPre=-/usr/bin/docker rm sample-app
+ExecStartPre=/usr/bin/docker pull sample-app
+ExecStart=/usr/bin/docker run --name sample-app -d -p 8080:80 sample-app
+ExecStop=/usr/bin/docker stop sample-app
