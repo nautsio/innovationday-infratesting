@@ -15,7 +15,7 @@ branches.each {
         	}
           	gradle {
     	        useWrapper true
-        	    tasks 'build'
+        	    tasks 'test'
         	}
         }
     }
