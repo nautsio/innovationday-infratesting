@@ -1,0 +1,20 @@
+task build(type:Exec) {
+  workingDir "."
+  commandLine "docker", "build", "-t" , "${project.name}", "."
+}
+
+task test << {
+
+}
+
+task testUnit << {
+    println "Unit test"
+}
+
+task deploy << {
+    println "Deploy artifact"
+}
+
+task testIntegration << {
+    println "Integration test"
+}
