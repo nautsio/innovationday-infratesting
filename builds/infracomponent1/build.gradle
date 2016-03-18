@@ -1,0 +1,3 @@
+task testUnit << {
+    println "Unit test project1"
+}

@@ -1,0 +1,15 @@
+task build  << {
+    println 'Build!'
+}
+task test << {
+
+}
+task testUnit << {
+    println "Unit test"
+}
+task deploy << {
+    println "Deploy artifact"
+}
+task testIntegration << {
+    println "Integration test"
+}
