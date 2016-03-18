@@ -3,8 +3,9 @@ task build(type:Exec) {
   commandLine "docker", "build", "-t" , "${project.name}", "."
 }
 
-task test << {
-
+task test(type:Exec) {
+  workingDir "."
+  commandLine "docker", "run", "-v" , "/var/run/docker.sock:/var/run/docker.sock", "-v", "${workingDir}:/usr/src/app/spec", "enieuw/serverspec"
 }
 
 task testUnit << {
