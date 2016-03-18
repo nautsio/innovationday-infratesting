@@ -8,8 +8,20 @@ task test(type:Exec) {
   commandLine "docker", "run", "-v" , "/var/run/docker.sock:/var/run/docker.sock", "-v", "${workingDir}:/usr/src/app/spec", "enieuw/serverspec"
 }
 
-task testUnit << {
-    println "Unit test"
+task destroySampleApp(type:Exec) {
+  workingDir "."
+  ignoreExitValue true
+  commandLine "fleetctl", "destroy", "sample-app"
+}
+
+task submitSampleApp(type:Exec) {
+  workingDir "."
+  commandLine "fleetctl", "submit", "sample-app"
+}
+
+task startSampleApp(type:Exec) {
+  workingDir "."
+  commandLine "fleetctl", "start", "sample-app"
 }
 
 task deploy << {
@@ -19,3 +31,5 @@ task deploy << {
 task testIntegration << {
     println "Integration test"
 }
+
+deploy.dependsOn destroySampleApp, submitSampleApp, startSampleApp
