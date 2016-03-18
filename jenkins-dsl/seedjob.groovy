@@ -9,10 +9,14 @@ branches.each {
             git("git://github.com/${project}.git", branchName)
         }
         steps {
-            grails 'build', true
-            grails 'unitTest', true
-	    grails 'deploy', true
-	    grails 'integrationTest', true
+	        gradle {
+    	        useWrapper true
+        	    tasks 'build'
+        	}
+          	gradle {
+    	        useWrapper true
+        	    tasks 'build'
+        	}
         }
     }
 }
